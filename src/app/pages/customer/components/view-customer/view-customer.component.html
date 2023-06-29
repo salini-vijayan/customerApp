@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+
+<div class="container col-md-6 offset-md-3 mt-5" *ngIf="customerById">
+  <!-- <h5 class="card-header">View Customer</h5> -->
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input
+            type="text"
+            class="form-control"
+            readonly
+            [value]="customerById.customer.name"
+          />
+        </div>
+        <div class="row">
+          <div class="mb-3 col">
+            <label class="form-label">Contact</label>
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              [value]="customerById.customer.contact"
+            />
+          </div>
+          <div class="mb-3 col">
+            <label class="form-label">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              [value]="customerById.customer.email"
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Date of Birth</label>
+          <input
+            type="date"
+            class="form-control"
+            readonly
+            [value]="customerById.customer.dob"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <textarea class="form-control" readonly>{{
+            customerById.customer.address
+          }}</textarea>
+        </div>
+        <div class="cancelBtn">
+          <button class="btn btn-primary" [routerLink]="['/customer']">
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="container col-md-6 offset-md-3 mt-5">
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  <div *ngIf="success" class="alert alert-success">{{ success }}</div>
+  <div class="card">
+    <div class="logo">
+      <img
+        class="card-img-top"
+        src="https://thumbs.dreamstime.com/b/teamwork-community-logo-design-vector-adoption-social-network-template-156215000.jpg"
+        alt="Card image cap"
+      />
+    </div>
+    <div class="card-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+          />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+            <div *ngIf="f.name.errors.pattern">Enter a valid name</div>
+            <div *ngIf="f.name.errors.minlength">
+              Name must be atleast 3 characters.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col">
+            <label class="form-label">Contact</label>
+            <input
+              type="text"
+              formControlName="contact"
+              class="form-control"
+              maxlength="10"
+              [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
+            />
+            <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+              <div *ngIf="f.contact.errors.required">Contact is required</div>
+              <div *ngIf="f.contact.errors.pattern">Enter a valid contact</div>
+            </div>
+          </div>
+          <div class="mb-3 col">
+            <label class="form-label">Email</label>
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Enter a valid email</div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Date of Birth</label>
+          <input
+            type="date"
+            formControlName="dob"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"
+          />
+          <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+            <div *ngIf="f.dob.errors.required">Date of birth is required</div>
+            <div *ngIf="f.dob.errors.ageLimit">Invalid Dob, age must be in between 18 and 200 years</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <textarea
+            type="date"
+            formControlName="address"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+          ></textarea>
+          <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+            <div *ngIf="f.address.errors.required">Address is required</div>
+            <div *ngIf="f.address.errors.minlength">Address must be atleast 3 characters.</div>
+          </div>
+        </div>
+        <div class="loginBtn">
+          <button [disabled]="loading" class="btn btn-primary">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm me-1"
+            ></span>
+            Register
+          </button>
+        </div>
+        <div class="regLink">
+          <a [routerLink]="['/login']" class="btn btn-link"
+            >Already a Member? Login</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="p-4">
+  <div class="container">
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+    <div *ngIf="success" class="alert alert-success">{{ success }}</div>
+    <h5 class="headingCls">Customer List</h5>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sl.No:</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th width="250px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            app-list-customer
+            *ngFor="let customer of customers; let i = index"
+            [customer]="customer"
+            [slNo]="i + 1"
+            (customerDelete)="delete($event)"
+          >
+            <!-- <> </app-list-customer> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
